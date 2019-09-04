@@ -7,7 +7,7 @@ class Auth extends CI_Controller{
     }
 
     function index(){
-        $this->load->view('auth/v_auth');
+        $this->load->view(api_url().'auth/v_auth');
     }
 
     function auth_process(){
@@ -17,8 +17,8 @@ class Auth extends CI_Controller{
                 'user'  => $username,
                 'pass'  => $password,
                 );
-            $cek = $this->db->get_where("m_user",$where)->num_rows();
-            $result = $this->db->get_where('m_user',array('user' => $username ))->row();
+            $cek = $this->db->get_where("t_user",$where)->num_rows();
+            $result = $this->db->get_where('t_user',array('user' => $username ))->row();
             if($cek > 0){
                 $this->db->trans_start();
                 $d = array(

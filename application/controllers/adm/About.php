@@ -1,10 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Berita extends CI_Controller {
+class About extends CI_Controller {
     
-    public $table       = 'm_berita';
-    public $foldername  = 'berita';
-    public $indexpage   = 'berita/v_berita';
+    public $table       = 'm_about';
+    public $foldername  = 'about';
+    public $indexpage   = 'about/v_about';
     function __construct() {
         parent::__construct();
         include(APPPATH.'libraries/sessionakses.php');

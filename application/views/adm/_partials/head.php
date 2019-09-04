@@ -16,5 +16,8 @@
         .modal {
             overflow-y:auto !important; 
         }
+        .invisible {
+            display: none !important;
+        }
     </style>
 </head>

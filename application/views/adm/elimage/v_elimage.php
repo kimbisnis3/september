@@ -25,20 +25,15 @@
                   <form id="form-data">
                     <div class="row">
                       <div class="col-md-12">
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                           <label>Judul</label>
-                          <input type="hidden" name="id">
                           <input type="text" class="form-control" name="judul" >
-                        </div>
+                        </div> -->
+                        <input type="hidden" name="id">
                         <div class="form-group">
                           <label>Gambar</label>
                           <input type="file" class="form-control" name="image" id="image">
                           <input type="hidden" name="path" id="path">
-                        </div>
-                        <div class="form-group">
-                          <label>Artikel</label>
-                          <textarea class="form-control" rows="7" name="artikelx" id="artikelx"></textarea>
-                          <textarea class="form-control" rows="7" name="artikel" id="artikel" style="display : none;"></textarea>
                         </div>
                         <div class="form-group">
                           <label>Keterangan</label>
@@ -77,7 +72,7 @@
                   <div class="box-header">
                     <div class="pull-left">
                       <button class="btn btn-success btn-flat refresh-btn" onclick="refresh()"><i class="fa fa-refresh"></i> Refresh</button>
-                      <button class="btn btn-primary btn-flat add-btn" onclick="add_data()" ><i class="fa fa-plus"></i> Tambah</button>
+                      <!-- <button class="btn btn-primary btn-flat add-btn" onclick="add_data()" ><i class="fa fa-plus"></i> Tambah</button> -->
                     </div>
                   </div>
                   <div class="box-body">
@@ -89,10 +84,8 @@
                             <th>id</th>
                             <th>Judul</th>
                             <th>Gambar</th>
-                            <th>Artikel</th>
                             <th>Keterangan</th>
-                            <th>Aktif</th>
-                            <th width="12%">Opsi</th>
+                            <th width="6%">Opsi</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -111,8 +104,8 @@
     </html>
   <?php $this->load->view(api_url().'_partials/js'); ?>
   <script type="text/javascript">
-  var path = 'berita';
-  var title = 'Berita';
+  var path = 'elimage';
+  var title = 'Element Image';
   var apiurl = "<?php echo base_url().api_url() ?>" + path;
   var state;
   var idx     = -1;
@@ -133,10 +126,8 @@
           { "data": "id" , "visible" : false},
           { "data": "judul" }, 
           { "render" : (data,type,row,meta) => {return showimage(row.image)} },
-          { "data": "artikel" }, 
           { "data": "ket" },
-          { "render" : (data,type,row,meta) => {return aktiflabel(row.aktif)} },
-          { "render" : (data,type,row,meta) => {return btnuda(row.id)} },
+          { "render" : (data,type,row,meta) => {return btnu(row.id)} },
           ]
       });
   });
@@ -157,7 +148,6 @@
       state = 'update';
       $('#modal-data .modal-title').text('Ubah Data');
       $('#form-data')[0].reset();
-      CKEDITOR.instances.artikelx.setData('');
       $.ajax({
           url: `${apiurl}/edit`,
           type: "POST",
@@ -169,9 +159,7 @@
               $('[name="id"]').val(data.id);
               $('[name="judul"]').val(data.judul);
               $('[name="path"]').val(data.image);
-              $('[name="artikel"]').val(data.artikel);
               $('[name="ket"]').val(data.ket);
-              CKEDITOR.instances.artikelx.setData(data.artikel);
 
               $('#modal-data').modal('show');
           },
@@ -183,8 +171,6 @@
 
   function savedata() {
       var url;
-      artikel = CKEDITOR.instances['artikelx'].getData();
-      $('#artikel').val(artikel);
       if (state == 'add') {
           url = `${apiurl}/savedata`;
       } else {

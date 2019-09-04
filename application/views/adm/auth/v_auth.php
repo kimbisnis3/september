@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html> 
 	<title><?php echo $this->libre->appname(); ?></title>
-	<?php $this->load->view('_partials/head') ?>
+	<?php $this->load->view(api_url().'_partials/head') ?>
 	<style type="text/css">
 		body {
 			background: #9ad3de !important;
@@ -52,7 +52,7 @@
 			</div>
 		</div>
 	</body>
-<?php $this->load->view('_partials/js');?>
+<?php $this->load->view(api_url().'_partials/js');?>
 </html>
 <script src="<?php echo base_url()?>assets/vanta/three.r92.min.js"></script>
 <script src="<?php echo base_url()?>assets/vanta/vanta.birds.min.js"></script>
@@ -60,7 +60,7 @@
 	function login() {
 		$('.btn-login').prop('disabled',true);
 		$.ajax({
-          url: '<?php echo base_url() ?>auth/auth_process/',
+          url: '<?php echo base_url().api_url() ?>auth/auth_process/',
           type: "POST",
           dataType: "JSON",
           data: {
@@ -70,7 +70,7 @@
           success: function(data) {
               if (data.result == 'success') {
                   showNotif(data.caption, data.msg, data.class)
-                  setTimeout(function(){ window.location.href = "<?php echo base_url() ?>landingpage" }, 1000);
+                  setTimeout(function(){ window.location.href = "<?php echo base_url().api_url() ?>landingpage" }, 1000);
                   ;
                   // $('.btn-login').prop('disabled',false);
               } else if (data.result == 'fail') {

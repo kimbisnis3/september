@@ -1,10 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Berita extends CI_Controller {
+class Elimage extends CI_Controller {
     
-    public $table       = 'm_berita';
-    public $foldername  = 'berita';
-    public $indexpage   = 'berita/v_berita';
+    public $table       = 't_config_image';
+    public $foldername  = 'elimage';
+    public $indexpage   = 'elimage/v_elimage';
     function __construct() {
         parent::__construct();
         include(APPPATH.'libraries/sessionakses.php');
@@ -14,7 +14,8 @@ class Berita extends CI_Controller {
     }
 
     public function getall(){
-        $this->db->order_by('id', 'desc');
+        $this->db->order_by('id', 'asc');
+        $this->db->where('tipe !=','ss');
         $result = $this->db->get($this->table)->result();
         echo json_encode(array('data' => $result));
     }
@@ -31,10 +32,7 @@ class Berita extends CI_Controller {
         $image = $this->libre->goUpload('image','img-'.time(),$this->foldername);
         $d['image']     = $image;
         $d['judul']     = $this->input->post('judul');
-        $d['subjudul']  = $this->input->post('subjudul');
-        $d['artikel']   = $this->input->post('artikel');
         $d['ket']       = $this->input->post('ket');
-        $d['slug']      = slug($this->input->post('judul'));
         $result = $this->db->insert($this->table,$d);
         $r['sukses'] = $result ? 'success' : 'fail' ;
         echo json_encode($r);
@@ -51,11 +49,7 @@ class Berita extends CI_Controller {
             $d['image'] = $this->input->post('path');
         }
 
-        $d['judul']     = $this->input->post('judul');
-        $d['subjudul']  = $this->input->post('subjudul');
-        $d['artikel']   = $this->input->post('artikel');
         $d['ket']       = $this->input->post('ket');
-        $d['slug']      = slug($this->input->post('judul'));
         $w['id'] = $this->input->post('id');
 
         $result = $this->db->update($this->table,$d,$w);

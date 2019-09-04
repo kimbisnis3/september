@@ -77,7 +77,7 @@
                   <div class="box-header">
                     <div class="pull-left">
                       <button class="btn btn-success btn-flat refresh-btn" onclick="refresh()"><i class="fa fa-refresh"></i> Refresh</button>
-                      <button class="btn btn-primary btn-flat add-btn" onclick="add_data()" ><i class="fa fa-plus"></i> Tambah</button>
+                      <!-- <button class="btn btn-primary btn-flat add-btn" onclick="add_data()" ><i class="fa fa-plus"></i> Tambah</button> -->
                     </div>
                   </div>
                   <div class="box-body">
@@ -91,7 +91,6 @@
                             <th>Gambar</th>
                             <th>Artikel</th>
                             <th>Keterangan</th>
-                            <th>Aktif</th>
                             <th width="12%">Opsi</th>
                           </tr>
                         </thead>
@@ -111,8 +110,8 @@
     </html>
   <?php $this->load->view(api_url().'_partials/js'); ?>
   <script type="text/javascript">
-  var path = 'berita';
-  var title = 'Berita';
+  var path = 'about';
+  var title = 'About Us';
   var apiurl = "<?php echo base_url().api_url() ?>" + path;
   var state;
   var idx     = -1;
@@ -135,8 +134,7 @@
           { "render" : (data,type,row,meta) => {return showimage(row.image)} },
           { "data": "artikel" }, 
           { "data": "ket" },
-          { "render" : (data,type,row,meta) => {return aktiflabel(row.aktif)} },
-          { "render" : (data,type,row,meta) => {return btnuda(row.id)} },
+          { "render" : (data,type,row,meta) => {return btnu(row.id)} },
           ]
       });
   });

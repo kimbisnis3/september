@@ -31,15 +31,6 @@
 	    return `<img onerror="this.onerror=null; this.src='${php_base_url}assets/gambar/noimage.png'" style="max-width : 60px;" src="${php_base_url}${url}" >`
 	}
 
-	function aktiflabel(text) {
-	    if (text == '0' || text == 'NULL' || text =='') {
-            return '<span class="label label-danger">Tidak Aktif</span>';
-        }
-        else {
-            return '<span class="label label-success">Aktif</span>';
-        }
-	}
-
 	function select2() {
 	    $('.select2').select2({
 	        placeholder: 'Select an option',
@@ -64,8 +55,38 @@
 	};
 
 	function activemenu(menu) {
-  		$("."+menu.toLowerCase()).addClass("active");
+  		$("."+menu.toLowerCase().replace(" ", "")).addClass("active");
   		$(".title").html(title);
+	}
+
+	function aktiflabel(text) {
+	    if (text == '0' || text == 'NULL' || text =='') {
+            return '<span class="bounceIn animated label label-danger">Tidak Aktif</span>';
+        }
+        else {
+            return '<span class="bounceIn animated label label-success">Aktif</span>';
+        }
+	}
+
+	function btnu(id) {
+		return `
+            <button class="btn btn-warning btn-flat btn-sm edit-btn" onclick="edit_data(${id})"><i class="fa fa-pencil"></i></button>
+            `
+	}
+
+	function btnud(id) {
+		return `
+            <button class="btn btn-warning btn-flat btn-sm edit-btn" onclick="edit_data(${id})"><i class="fa fa-pencil"></i></button>
+            <button class="btn btn-danger btn-flat btn-sm delete-btn" onclick="hapus_data(${id})" ><i class="fa fa-trash"></i></button>
+            `
+	}
+
+	function btnuda(id) {
+		return `
+            <button class="btn btn-warning btn-flat btn-sm edit-btn" onclick="edit_data(${id})"><i class="fa fa-pencil"></i></button>
+            <button class="btn btn-danger btn-flat btn-sm delete-btn" onclick="hapus_data(${id})" ><i class="fa fa-trash"></i></button>
+            <button class="btn btn-success btn-flat btn-sm aktif-btn" onclick="aktif_data(${id})" ><i class="fa fa-check"></i></button>
+            `
 	}
 
 </script>
