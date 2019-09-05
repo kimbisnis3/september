@@ -31,6 +31,11 @@
           <i class="fa fa-picture-o"></i> <span>Element Image</span>
         </a>
       </li>
+      <li class="user">
+        <a href="<?php echo base_url().admin_url() ?>user">
+          <i class="fa fa-key"></i> <span>User</span>
+        </a>
+      </li>
     </ul>
   </section>
 </aside>

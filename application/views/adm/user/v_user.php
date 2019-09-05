@@ -26,23 +26,21 @@
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
-                          <label>Judul</label>
+                          <label>Username</label>
                           <input type="hidden" name="id">
-                          <input type="text" class="form-control" name="judul" >
+                          <input type="text" class="form-control" name="user" >
                         </div>
                         <div class="form-group">
-                          <label>Gambar</label>
-                          <input type="file" class="form-control" name="image" id="image">
-                          <input type="hidden" name="path" id="path">
+                          <label>Password</label>
+                          <input type="text" class="form-control" name="pass" >
                         </div>
                         <div class="form-group">
-                          <label>Artikel</label>
-                          <textarea class="form-control" rows="7" name="artikelx" id="artikelx"></textarea>
-                          <textarea class="form-control" rows="7" name="artikel" id="artikel" style="display : none;"></textarea>
+                          <label>Nama</label>
+                          <input type="text" class="form-control" name="nama" >
                         </div>
                         <div class="form-group">
-                          <label>Keterangan</label>
-                          <input type="text" class="form-control" name="ket">
+                          <label>Alamat</label>
+                          <input type="text" class="form-control" name="alamat" >
                         </div>
                       </div>
                     </div>
@@ -87,10 +85,10 @@
                           <tr>
                             <th width="5%">No</th>
                             <th>id</th>
-                            <th>Judul</th>
-                            <th>Gambar</th>
-                            <th>Artikel</th>
-                            <th>Keterangan</th>
+                            <th>Username</th>
+                            <th>Password</th>
+                            <th>Nama</th>
+                            <th>Alamat</th>
                             <th>Aktif</th>
                             <th width="12%">Opsi</th>
                           </tr>
@@ -111,8 +109,8 @@
     </html>
   <?php $this->load->view(api_url().'_partials/js'); ?>
   <script type="text/javascript">
-  var path = 'berita';
-  var title = 'Berita';
+  var path = 'user';
+  var title = 'User';
   var apiurl = "<?php echo base_url().api_url() ?>" + path;
   var state;
   var idx     = -1;
@@ -131,10 +129,10 @@
           "columns": [
           { "render" : (data,type,row,meta) => {return meta.row + 1} },
           { "data": "id" , "visible" : false},
-          { "data": "judul" },
-          { "render" : (data,type,row,meta) => {return showimage(row.image)} },
-          { "data": "artikel" },
-          { "data": "ket" },
+          { "data": "user" },
+          { "render" : (data,type,row,meta) => {return row.pass} },
+          { "data": "nama" },
+          { "data": "alamat" },
           { "render" : (data,type,row,meta) => {return aktiflabel(row.aktif)} },
           { "render" : (data,type,row,meta) => {return btnuda(row.id)} },
           ]
@@ -156,8 +154,6 @@
   function edit_data(id) {
       state = 'update';
       $('#modal-data .modal-title').text('Ubah Data');
-      $('#form-data')[0].reset();
-      CKEDITOR.instances.artikelx.setData('');
       $.ajax({
           url: `${apiurl}/edit`,
           type: "POST",
@@ -167,11 +163,10 @@
           dataType: "JSON",
           success: function(data) {
               $('[name="id"]').val(data.id);
-              $('[name="judul"]').val(data.judul);
-              $('[name="path"]').val(data.image);
-              $('[name="artikel"]').val(data.artikel);
-              $('[name="ket"]').val(data.ket);
-              CKEDITOR.instances.artikelx.setData(data.artikel);
+              $('[name="user"]').val(data.user);
+              $('[name="pass"]').val(data.pass);
+              $('[name="nama"]').val(data.nama);
+              $('[name="alamat"]').val(data.alamat);
 
               $('#modal-data').modal('show');
           },
@@ -183,23 +178,16 @@
 
   function savedata() {
       var url;
-      artikel = CKEDITOR.instances['artikelx'].getData();
-      $('#artikel').val(artikel);
       if (state == 'add') {
           url = `${apiurl}/savedata`;
       } else {
           url = `${apiurl}/updatedata`;
       }
-      var formData = new FormData($('#form-data')[0]);
       $.ajax({
           url: url,
           type: "POST",
-          data: formData,
+          data: $('#form-data').serializeArray(),
           dataType: "JSON",
-          mimeType: "multipart/form-data",
-          contentType: false,
-          cache: false,
-          processData: false,
           success: function(data) {
               if (data.sukses == 'success') {
                   $('#modal-data').modal('hide');
