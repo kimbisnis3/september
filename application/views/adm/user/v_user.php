@@ -9,7 +9,7 @@
         <section class="content-header">
           <h1 class="title"></h1>
           <ol class="breadcrumb">
-            <li><a href="<?php echo site_url(); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="<?php echo base_url().admin_url(); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
             <li class="active title"></li>
           </ol>
         </section>

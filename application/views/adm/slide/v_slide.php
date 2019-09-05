@@ -9,7 +9,7 @@
         <section class="content-header">
           <h1 class="title"></h1>
           <ol class="breadcrumb">
-            <li><a href="<?php echo site_url(); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="<?php echo base_url().admin_url(); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
             <li class="active title"></li>
           </ol>
         </section>
@@ -124,7 +124,7 @@
           "columns": [
           { "render" : (data,type,row,meta) => {return meta.row + 1} },
           { "data": "id" , "visible" : false},
-          { "data": "judul" }, 
+          { "data": "judul" },
           { "render" : (data,type,row,meta) => {return showimage(row.image)} },
           { "data": "ket" },
           { "render" : (data,type,row,meta) => {return btnud(row.id)} },
