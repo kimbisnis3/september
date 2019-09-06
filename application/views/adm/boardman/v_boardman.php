@@ -26,17 +26,30 @@
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
-                          <label>Judul</label>
+                          <label>Nama</label>
                           <input type="hidden" name="id">
-                          <input type="text" class="form-control" name="judul">
+                          <input type="text" class="form-control" name="nama" >
                         </div>
                         <div class="form-group">
-                          <label>Sub Judul</label>
-                          <input type="text" class="form-control" name="subjudul">
+                          <label>Gambar</label>
+                          <input type="file" class="form-control" name="image" id="image">
+                          <input type="hidden" name="path" id="path">
                         </div>
                         <div class="form-group">
-                          <label>Teks</label>
-                          <textarea type="text" class="form-control" rows="7" name="teks" ></textarea>
+                          <label>Jabatan</label>
+                          <input type="text" class="form-control" name="jabatan">
+                        </div>
+                        <div class="form-group">
+                          <label>Link Facebook</label>
+                          <input type="text" class="form-control" name="fb">
+                        </div>
+                        <div class="form-group">
+                          <label>Link Twitter</label>
+                          <input type="text" class="form-control" name="twitter">
+                        </div>
+                        <div class="form-group">
+                          <label>Link Linkedin</label>
+                          <input type="text" class="form-control" name="linkedin">
                         </div>
                       </div>
                     </div>
@@ -71,6 +84,7 @@
                   <div class="box-header">
                     <div class="pull-left">
                       <button class="btn btn-success btn-flat refresh-btn" onclick="refresh()"><i class="fa fa-refresh"></i> Refresh</button>
+                      <button class="btn btn-primary btn-flat add-btn" onclick="add_data()" ><i class="fa fa-plus"></i> Tambah</button>
                     </div>
                   </div>
                   <div class="box-body">
@@ -80,10 +94,9 @@
                           <tr>
                             <th width="5%">No</th>
                             <th>id</th>
-                            <th>Judul</th>
-                            <th>Subjudul</th>
-                            <th>Teks</th>
-                            <th>Keterangan</th>
+                            <th>Nama</th>
+                            <th>Jabatan</th>
+                            <th>Gambar</th>
                             <th width="12%">Opsi</th>
                           </tr>
                         </thead>
@@ -103,8 +116,8 @@
     </html>
   <?php $this->load->view(api_url().'_partials/js'); ?>
   <script type="text/javascript">
-  var path = 'elteks';
-  var title = 'Element Teks';
+  var path = 'boardman';
+  var title = 'Board Management';
   var apiurl = "<?php echo base_url().api_url() ?>" + path;
   var state;
   var idx     = -1;
@@ -123,11 +136,10 @@
           "columns": [
           { "render" : (data,type,row,meta) => {return meta.row + 1} },
           { "data": "id" , "visible" : false},
-          { "data": "judul" },
-          { "data": "subjudul" },
-          { "data": "teks" },
-          { "data": "ket" },
-          { "render" : (data,type,row,meta) => {return btnu(row.id)} },
+          { "data": "nama" },
+          { "data": "jabatan" },
+          { "render" : (data,type,row,meta) => {return showimage(row.image)} },
+          { "render" : (data,type,row,meta) => {return btnud(row.id)} },
           ]
       });
   });
@@ -138,7 +150,6 @@
   }
 
   function add_data() {
-      $('[name="judul"]').prop('readonly', false);
       state = 'add';
       $('#form-data')[0].reset();
       $('#modal-data').modal('show');
@@ -146,9 +157,9 @@
   }
 
   function edit_data(id) {
-      $('[name="judul"]').prop('readonly', false);
       state = 'update';
       $('#modal-data .modal-title').text('Ubah Data');
+      $('#form-data')[0].reset();
       $.ajax({
           url: `${apiurl}/edit`,
           type: "POST",
@@ -158,13 +169,12 @@
           dataType: "JSON",
           success: function(data) {
               $('[name="id"]').val(data.id);
-              $('[name="teks"]').val(data.teks);
-              $('[name="judul"]').val(data.judul);
-              $('[name="subjudul"]').val(data.subjudul);
-
-              if (data.status != 1) {
-                $('[name="judul"]').prop('readonly', true);
-              }
+              $('[name="nama"]').val(data.nama);
+              $('[name="jabatan"]').val(data.jabatan);
+              $('[name="fb"]').val(data.fb);
+              $('[name="twitter"]').val(data.twitter);
+              $('[name="linkedin"]').val(data.linkedin);
+              $('[name="path"]').val(data.image);
 
               $('#modal-data').modal('show');
           },
@@ -181,11 +191,16 @@
       } else {
           url = `${apiurl}/updatedata`;
       }
+      var formData = new FormData($('#form-data')[0]);
       $.ajax({
           url: url,
           type: "POST",
-          data: $('#form-data').serializeArray(),
+          data: formData,
           dataType: "JSON",
+          mimeType: "multipart/form-data",
+          contentType: false,
+          cache: false,
+          processData: false,
           success: function(data) {
               if (data.sukses == 'success') {
                   $('#modal-data').modal('hide');
@@ -200,6 +215,37 @@
           },
           error: function(jqXHR, textStatus, errorThrown) {
               alert('Error on process');
+          }
+      });
+  }
+
+  function hapus_data(id) {
+      $('#modal-konfirmasi').modal('show');
+      $(' #modal-konfirmasi .modal-title').text('Yakin Hapus Data ?');
+      $('#btnHapus').attr('onclick', 'delete_data(' + id + ')');
+  }
+
+  function delete_data(id) {
+      $.ajax({
+          url: `${apiurl}/deletedata`,
+          type: "POST",
+          dataType: "JSON",
+          data: {
+              id: id,
+          },
+          success: function(data) {
+              $('#modal-konfirmasi').modal('hide');
+              if (data.sukses == 'success') {
+                  refresh();
+                  showNotif('Sukses', 'Data Berhasil Dihapus', 'success')
+              } else if (data.sukses == 'fail') {
+                  $('#modal-data').modal('hide');
+                  refresh();
+                  showNotif('Gagal', 'Data Gagal Dihapus', 'danger')
+              }
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+              showNotif('Fail', 'Internal Error', 'danger');
           }
       });
   }

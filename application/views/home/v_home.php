@@ -111,9 +111,9 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="title" style="margin-bottom: 30px;">
-								<h2>Why S.P.A. Solo Raya?</h2>
-								<span>World-class education, real-world results.</span>
-								<p>S.P.A. Solo Raya has a warm and vibrant learning environment where young children interact and communicate with adolescent students. This occurs on a daily basis under the watchful eyes of our qualified and dedicated teachers (local and international). The curriculum is closely aligned with Singapore’s Ministry of Education and carefully integrated with local Indonesian subjects.</p>
+								<h2><?php echo $elhome->judul; ?></h2>
+								<span><?php echo $elhome->subjudul; ?></span>
+								<p><?php echo $elhome->teks; ?></p>
 							</div>
 
 							<div class="easyedu-services" style="display: none">
@@ -254,11 +254,11 @@
 				<div class="container">
 					<div class="col-md-8">
 						<div class="side-title">
-							<span>Our List Of Curicullums</span>
-							<h2>Educational <i>Programs</i></h2>
+							<span><?php echo $elhome2->judul; ?></span>
+							<h2><?php echo $elhome2->subjudul; ?></i></h2>
 						</div>
 						<div class="educational-programs">
-							<p>Excellence is one of our core values. We believes in developing our student's character to help forge highly competitive spirit via competitions, be it internally, externally or globally.</p>
+							<p><?php echo $elhome2->teks; ?></p>
 							<div class="row">
 								<div class="col-md-6">
 									<div class="program">
@@ -503,9 +503,9 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="title">
-								<h2>Latest News & Events</h2>
-								<span>All arround the School</span>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+								<h2><?php echo $ellastest->judul; ?></h2>
+								<span><?php echo $ellastest->subjudul; ?></span>
+								<p><?php echo $ellastest->teks; ?></p>
 							</div>
 
 							<div class="edu-blog">

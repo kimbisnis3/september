@@ -82,31 +82,32 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="title">
-								<h2><?php echo $boardman->judul; ?></h2>
-								<p><?php echo $boardman->teks; ?></p>
+								<h2><?php echo $teksboardman->judul; ?></h2>
+								<span><?php echo $teksboardman->subjudul; ?></span>
+								<p><?php echo $teksboardman->teks; ?></p>
 							</div>
 
-							<?php foreach ($variable as $key => $value): ?>
 								<div class="educational-staff">
 									<div class="row">
+									<?php foreach ($boardman as $i => $v): ?>
 										<div class="col-md-4">
 											<div class="staff">
-												<div class="staff-img"><img src="images/resource/staff1.jpg" alt="" /></div>
+												<div class="staff-img"><img src="<?php echo base_url().$v->image ?>" alt="" /></div>
 												<div class="staff-detail">
-													<h4><a href="team-detail.html" title="">Jeremy Remark</a></h4>
-													<span>Head of Management</span>
+													<h4><?php echo $v->nama ?></h4>
+													<span><?php echo $v->jabatan ?></span>
 													<div class="connected">
 														<strong style="display: none">Stay Connected</strong>
-														<a href="#" title=""><i class="fa fa-facebook"></i></a>
-														<a href="#" title=""><i class="fa fa-twitter"></i></a>
-														<a href="#" title=""><i class="fa fa-linkedin"></i></a>
+														<a href="<?php echo prep_url($v->fb) ?>" title=""><i class="fa fa-facebook"></i></a>
+														<a href="<?php echo prep_url($v->twitter) ?>" title=""><i class="fa fa-twitter"></i></a>
+														<a href="<?php echo prep_url($v->linkedin) ?>" title=""><i class="fa fa-linkedin"></i></a>
 													</div>
 												</div>
 											</div>
 										</div>
+									<?php endforeach; ?>
 									</div>
 								</div>
-							<?php endforeach; ?>
 
 
 							<div class="button-set" style="display: none">

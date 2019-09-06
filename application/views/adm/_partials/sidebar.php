@@ -36,6 +36,11 @@
           <i class="fa fa-file-text-o"></i> <span>Element Teks</span>
         </a>
       </li>
+      <li class="boardmanagement">
+        <a href="<?php echo base_url().admin_url() ?>boardman">
+          <i class="fa fa-users"></i> <span>Board Mangement</span>
+        </a>
+      </li>
       <li class="user">
         <a href="<?php echo base_url().admin_url() ?>user">
           <i class="fa fa-key"></i> <span>User</span>

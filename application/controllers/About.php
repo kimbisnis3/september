@@ -18,7 +18,9 @@ class About extends CI_Controller {
         $data['about_4'] = $this->db->get_where($this->table,array('kode' => 'about_4'))->row();
 
         $data['teksaboutus'] = $this->db->get_where('t_config_text',array('tipe' => 'elteksabout'))->row();
-        $data['boardman'] = $this->db->get_where('t_config_text',array('tipe' => 'elboardman'))->row();
+        $data['teksboardman'] = $this->db->get_where('t_config_text',array('tipe' => 'elboardman'))->row();
+
+        $data['boardman'] = $this->db->get('m_boardman')->result();
 		    $this->load->view($this->mainpage,$data);
     }
 

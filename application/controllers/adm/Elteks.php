@@ -14,7 +14,7 @@ class Elteks extends CI_Controller {
     }
 
     public function getall(){
-        $this->db->order_by('id', 'desc');
+        $this->db->order_by('id', 'asc');
         $result = $this->db->get($this->table)->result();
         echo json_encode(array('data' => $result));
     }
@@ -29,6 +29,7 @@ class Elteks extends CI_Controller {
     public function savedata()
     {
         $d['judul']  = $this->input->post('judul');
+        $d['subjudul']  = $this->input->post('subjudul');
         $d['teks']  = $this->input->post('teks');
         $result = $this->db->insert($this->table,$d);
         $r['sukses'] = $result ? 'success' : 'fail' ;
@@ -38,6 +39,7 @@ class Elteks extends CI_Controller {
     function updatedata()
     {
         $d['judul']  = $this->input->post('judul');
+        $d['subjudul']  = $this->input->post('subjudul');
         $d['teks']  = $this->input->post('teks');
         $w['id'] = $this->input->post('id');
         $result = $this->db->update($this->table,$d,$w);

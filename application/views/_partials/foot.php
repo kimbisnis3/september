@@ -1,9 +1,12 @@
 <?php
 $configtext = 't_config_text';
+$configimage = 't_config_image';
 $eltk     = $this->db->get_where($configtext,array('tipe' => 'eltk' ))->row()->teks;
 $elnohp   = $this->db->get_where($configtext,array('tipe' => 'elnohp' ))->row()->teks;
 $elalamat = $this->db->get_where($configtext,array('tipe' => 'elalamat' ))->row()->teks;
 $elemail  = $this->db->get_where($configtext,array('tipe' => 'elemail' ))->row()->teks;
+
+$logo  = $this->db->get_where($configimage,array('tipe' => 'logofooter' ))->row()->image;
 
  ?>
 <footer>
@@ -13,7 +16,7 @@ $elemail  = $this->db->get_where($configtext,array('tipe' => 'elemail' ))->row()
         <div class="col-md-4">
           <div class="widget">
             <div class="about-widget">
-              <div class="widget-logo"><a href="index.html" title=""><img src="images/logo-white.png" alt="" /></a></div>
+              <div class="widget-logo"><a href="<?php echo base_url() ?>" title=""><img src="<?php echo base_url().$logo; ?>" alt="" /></a></div>
               <p><?php echo $eltk ?></p>
               <ul>
                 <li><span><i class="fa fa-map-marker"></i></span> <?php echo $elalamat ?> </li>
