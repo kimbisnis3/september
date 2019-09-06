@@ -31,18 +31,12 @@
                           <input type="text" class="form-control" name="judul" >
                         </div>
                         <div class="form-group">
-                          <label>Gambar</label>
-                          <input type="file" class="form-control" name="image" id="image">
-                          <input type="hidden" name="path" id="path">
+                          <label>Sub Judul</label>
+                          <input type="text" class="form-control" name="subjudul" >
                         </div>
                         <div class="form-group">
                           <label>Artikel</label>
-                          <textarea class="form-control" rows="7" name="artikelx" id="artikelx"></textarea>
-                          <textarea class="form-control" rows="7" name="artikel" id="artikel" style="display : none;"></textarea>
-                        </div>
-                        <div class="form-group">
-                          <label>Keterangan</label>
-                          <input type="text" class="form-control" name="ket">
+                          <textarea class="form-control" rows="7" name="artikel"></textarea>
                         </div>
                       </div>
                     </div>
@@ -88,9 +82,8 @@
                             <th width="5%">No</th>
                             <th>id</th>
                             <th>Judul</th>
-                            <th>Gambar</th>
+                            <th>Sub Judul</th>
                             <th>Artikel</th>
-                            <th>Keterangan</th>
                             <th width="12%">Opsi</th>
                           </tr>
                         </thead>
@@ -131,9 +124,8 @@
           { "render" : (data,type,row,meta) => {return meta.row + 1} },
           { "data": "id" , "visible" : false},
           { "data": "judul" },
-          { "render" : (data,type,row,meta) => {return showimage(row.image)} },
+          { "data": "subjudul" },
           { "data": "artikel" },
-          { "data": "ket" },
           { "render" : (data,type,row,meta) => {return btnu(row.id)} },
           ]
       });
@@ -155,7 +147,6 @@
       state = 'update';
       $('#modal-data .modal-title').text('Ubah Data');
       $('#form-data')[0].reset();
-      CKEDITOR.instances.artikelx.setData('');
       $.ajax({
           url: `${apiurl}/edit`,
           type: "POST",
@@ -166,10 +157,9 @@
           success: function(data) {
               $('[name="id"]').val(data.id);
               $('[name="judul"]').val(data.judul);
-              $('[name="path"]').val(data.image);
+              $('[name="subjudul"]').val(data.subjudul);
               $('[name="artikel"]').val(data.artikel);
               $('[name="ket"]').val(data.ket);
-              CKEDITOR.instances.artikelx.setData(data.artikel);
 
               $('#modal-data').modal('show');
           },
@@ -181,8 +171,6 @@
 
   function savedata() {
       var url;
-      artikel = CKEDITOR.instances['artikelx'].getData();
-      $('#artikel').val(artikel);
       if (state == 'add') {
           url = `${apiurl}/savedata`;
       } else {

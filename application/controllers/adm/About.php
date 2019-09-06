@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 class About extends CI_Controller {
-    
+
     public $table       = 'm_about';
     public $foldername  = 'about';
     public $indexpage   = 'about/v_about';
@@ -10,11 +10,11 @@ class About extends CI_Controller {
         include(APPPATH.'libraries/sessionakses.php');
     }
     function index(){
-        $this->load->view(api_url().$this->indexpage);  
+        $this->load->view(api_url().$this->indexpage);
     }
 
     public function getall(){
-        $this->db->order_by('id', 'desc');
+        $this->db->order_by('id', 'asc');
         $result = $this->db->get($this->table)->result();
         echo json_encode(array('data' => $result));
     }
@@ -27,7 +27,7 @@ class About extends CI_Controller {
     }
 
     public function savedata()
-    {   
+    {
         $image = $this->libre->goUpload('image','img-'.time(),$this->foldername);
         $d['image']     = $image;
         $d['judul']     = $this->input->post('judul');
@@ -64,7 +64,7 @@ class About extends CI_Controller {
     }
 
     function aktifdata() {
-        $w['id'] = $this->input->post('id');   
+        $w['id'] = $this->input->post('id');
         $s = $this->db->get_where($this->table,$w)->row()->aktif;
         $s == 1 ? $status = 0 : $status =1;
         $d['aktif'] = $status;

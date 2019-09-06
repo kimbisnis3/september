@@ -31,6 +31,11 @@
           <i class="fa fa-picture-o"></i> <span>Element Image</span>
         </a>
       </li>
+      <li class="elementteks">
+        <a href="<?php echo base_url().admin_url() ?>elteks">
+          <i class="fa fa-file-text-o"></i> <span>Element Teks</span>
+        </a>
+      </li>
       <li class="user">
         <a href="<?php echo base_url().admin_url() ?>user">
           <i class="fa fa-key"></i> <span>User</span>
