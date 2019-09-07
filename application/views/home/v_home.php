@@ -249,7 +249,7 @@
 									<?php foreach ($news as $i => $v): ?>
 									<div class="col-md-4">
 										<div class="edu-post">
-											<div class="post-img"><img src="images/resource/post1.jpg" alt="" /></div>
+											<div class="post-img"><img src="<?php echo base_url().$v->image; ?>" alt="" /></div>
 											<div class="post-detail">
 												<span><?php echo indonesian_date($v->tgl); ?></span>
 												<h3><a href="#" title=""><?php echo $v->judul; ?></a></h3>
