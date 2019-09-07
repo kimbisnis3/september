@@ -260,42 +260,17 @@
 						<div class="educational-programs">
 							<p><?php echo $elhome2->teks; ?></p>
 							<div class="row">
+								<?php foreach ($educational as $i => $v): ?>
 								<div class="col-md-6">
 									<div class="program">
-										<div class="prog-icon"><span><img src="images/resource/prog1.png" alt="" /></span></div>
+										<div class="prog-icon"><span><img src="<?php echo base_url().$v->image; ?>" alt="" /></span></div>
 										<div class="prog-detail">
-											<h4>Early Learning Center</h4>
-											<p>Early Learning Centre Curriculum (18 Months – 5 Years Old).</p>
+											<h4><?php echo $v->judul; ?></h4>
+											<p><?php echo $v->artikel; ?></p>
 										</div>
 									</div><!-- Program -->
 								</div>
-								<div class="col-md-6">
-									<div class="program">
-										<div class="prog-icon"><span><img src="images/resource/prog2.png" alt="" /></span></div>
-										<div class="prog-detail">
-											<h4>Primary School</h4>
-											<p>Primary School Curriculum (6-12 Years Old).</p>
-										</div>
-									</div><!-- Program -->
-								</div>
-								<div class="col-md-6">
-									<div class="program">
-										<div class="prog-icon"><span><img src="images/resource/prog3.png" alt="" /></span></div>
-										<div class="prog-detail">
-											<h4>Secondary School</h4>
-											<p>Secondary Sschool Curriculum (12-16 Years Old)</p>
-										</div>
-									</div><!-- Program -->
-								</div>
-								<div class="col-md-6">
-									<div class="program">
-										<div class="prog-icon"><span><img src="images/resource/prog4.png" alt="" /></span></div>
-										<div class="prog-detail">
-											<h4>Junior College</h4>
-											<p>Junior College Curriculum (16 Years Old And Above)</p>
-										</div>
-									</div><!-- Program -->
-								</div>
+								<?php endforeach; ?>
 							</div>
 						</div><!-- Educational Programs -->
 					</div>
@@ -564,19 +539,6 @@
 			</div>
 		</section>
 
-
-		<section>
-			<div class="block gray" style="display: none">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12">
-							<img src="images/resource/cambridge.png" style="height: 100px;">
-							<img src="images/resource/diknas.png" style="height: 100px;">
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
 <?php $this->load->view('_partials/foot') ?>
 	</div>
 </body>

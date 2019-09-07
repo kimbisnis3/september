@@ -11,9 +11,9 @@
     </div>
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">MENU</li>
-      <li class="berita">
-        <a href="<?php echo base_url().admin_url() ?>berita">
-          <i class="fa fa-newspaper-o"></i> <span>Berita</span>
+      <li class="newsandevents">
+        <a href="<?php echo base_url().admin_url() ?>news">
+          <i class="fa fa-newspaper-o"></i> <span>News & Events</span>
         </a>
       </li>
       <li class="aboutus">
@@ -24,6 +24,11 @@
       <li class="slideshow">
         <a href="<?php echo base_url().admin_url() ?>slide">
           <i class="fa fa-sliders"></i> <span>Slideshow</span>
+        </a>
+      </li>
+      <li class="contactus">
+        <a href="<?php echo base_url().admin_url() ?>contact">
+          <i class="fa fa-book"></i> <span>Contact Us</span>
         </a>
       </li>
       <li class="elementimage">
@@ -39,6 +44,11 @@
       <li class="boardmanagement">
         <a href="<?php echo base_url().admin_url() ?>boardman">
           <i class="fa fa-users"></i> <span>Board Mangement</span>
+        </a>
+      </li>
+      <li class="educationalprograms">
+        <a href="<?php echo base_url().admin_url() ?>educational">
+          <i class="fa fa-graduation-cap"></i> <span>Educational Programs</span>
         </a>
       </li>
       <li class="user">

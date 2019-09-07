@@ -17,8 +17,8 @@ $ellogo   = $this->db->get_where($configimage,array('tipe' => 'logo' ))->row()->
     </li>
     <li><a href="#" title="">Admissions</a></li>
     <li><a href="gallery.html" title="">Gallery</a></li>
-    <li><a href="news-events.html" title="">News & Events</a></li>
-    <li><a href="contact-us.html" title="">Contact Us</a></li>
+    <li><a href="'.base_url().'news" title="">News & Events</a></li>
+    <li><a href="'.base_url().'contact" title="">Contact Us</a></li>
   </ul>';
 
   $information = '
@@ -30,8 +30,9 @@ $ellogo   = $this->db->get_where($configimage,array('tipe' => 'logo' ))->row()->
         <a href="https://www.instagram.com/spasoloraya/" title="Instagram" target="_blank"><i class="fa fa-twitter"></i></a>
       </span>
     </span>
-    <div class="registration">
-      <a href="login-registration.html" title="">Register</a> <a href="login-registration.html" title="">Sign in</a>
+    <div class="registration" style="display : none">
+      <a href="login-registration.html" title="">Register</a>
+      <a href="login-registration.html" title="">Sign in</a>
     </div>
   '
  ?>

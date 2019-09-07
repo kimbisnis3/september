@@ -16,4 +16,6 @@
 	<!-- REVOLUTION STYLE SHEETS -->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/front/revolution/css/settings.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/front/revolution/css/navigation.css">
+
+	<link href="<?php echo base_url() ?>assets/lte/plugins/animate/animate.css" rel="stylesheet"/>
 </head>

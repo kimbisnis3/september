@@ -18,6 +18,7 @@ class Home extends CI_Controller {
 				$data['elhome2'] = $this->db->get_where('t_config_text',array('tipe' => 'elhome2' ))->row();
 				$data['ellastest'] = $this->db->get_where('t_config_text',array('tipe' => 'ellastest' ))->row();
 				$data['imghome'] = $this->db->get_where('t_config_image',array('tipe' => 'homeimage' ))->row();
+				$data['educational'] = $this->db->get('m_educational')->result();
 		    $this->load->view($this->mainpage,$data);
     }
 

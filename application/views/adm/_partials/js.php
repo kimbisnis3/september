@@ -10,6 +10,8 @@
 <script src="<?php echo base_url()?>assets/lte/plugins/ajaxupload/jquery.ajaxfileupload.js"></script>
 <script src="<?php echo base_url()?>assets/lte/plugins/pace/pace.js"></script>
 <script src="<?php echo base_url()?>assets/lte/plugins/ckeditor/ckeditor.js"></script>
+<script src="<?php echo base_url()?>assets/lte/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+<script src="<?php echo base_url()?>assets/lte/plugins/moment/moment.js"></script>
 <script type="text/javascript">
 
 	var php_base_url = '<?php echo base_url() ?>';
@@ -25,6 +27,10 @@
 	        autoclose: true,
 	        format: 'dd M yyyy'
 	    })
+	}
+
+	function normal_date(a) {
+		 return moment(a,'YYYY-MM-DD').format('DD MMM YYYY');
 	}
 
 	function showimage(url) {
@@ -71,6 +77,12 @@
 	function btnu(id) {
 		return `
             <button class="btn btn-warning btn-flat btn-sm edit-btn" onclick="edit_data(${id})"><i class="fa fa-pencil"></i></button>
+            `
+	}
+
+	function btnd(id) {
+		return `
+						<button class="btn btn-danger btn-flat btn-sm delete-btn" onclick="hapus_data(${id})" ><i class="fa fa-trash"></i></button>
             `
 	}
 
