@@ -68,8 +68,7 @@
 
             <ul class="pagination">
               <li style="display : 'inline'"><a href="<?php echo $menu ?>?page=<?php echo $prevpage; ?>" ><img src="<?php echo base_url(); ?>assets/front/images/arrow2.png" alt="" /></a></li>
-							<?php
-							for( $no = 1; $no <= ($numofpage) ; $no++ ) { ?>
+							<?php for( $no = 1; $no <= ($numofpage) ; $no++ ) { ?>
 
               <li><a class="<?php echo ($no == $currentpage) ? 'active' : ''; ?>" href="<?php echo $menu ?>?page=<?php echo $no; ?>"><?php echo $no; ?></a></li>
               <?php } ?>

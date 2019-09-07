@@ -21,7 +21,7 @@ if (!function_exists('status')) {
         else {
             $text = $text;
         }
-       
+
         return $text;
     }
 
@@ -33,14 +33,14 @@ if (!function_exists('status')) {
         else {
             $text = '<span class="label label-success">Aktif</span>';
         }
-       
+
         return $text;
     }
 
     function id_date($date)
     {
         if ($date != NULL) {
-            
+
         $indonesian_month = array("Jan", "Feb", "Mar",
             "Apr", "Mei", "Jun",
             "Jul", "Agt", "Sep",
@@ -52,10 +52,10 @@ if (!function_exists('status')) {
 
         return $result;
     }else {
-        
+
     }
     }
-    
+
     function indonesian_date($date)
     {
         // fungsi atau method untuk mengubah tanggal ke format indonesia
@@ -71,6 +71,32 @@ if (!function_exists('status')) {
         return $result;
     }
 
+    function indonesian_date_date($date)
+    {
+        $indonesian_month = array("Januari", "Februari", "Maret",
+            "April", "Mei", "Juni",
+            "Juli", "Agustus", "September",
+            "Oktober", "November", "Desember");
+        $year        = substr($date, 0, 4); // memisahkan format tahun menggunakan substring
+        $month       = substr($date, 5, 2); // memisahkan format bulan menggunakan substring
+        $currentdate = substr($date, 8, 2); // memisahkan format tanggal menggunakan substring
+        $result = $currentdate;
+        return $result;
+    }
+
+    function indonesian_date_month($date)
+    {
+        $indonesian_month = array("Januari", "Februari", "Maret",
+            "April", "Mei", "Juni",
+            "Juli", "Agustus", "September",
+            "Oktober", "November", "Desember");
+        $year        = substr($date, 0, 4); // memisahkan format tahun menggunakan substring
+        $month       = substr($date, 5, 2); // memisahkan format bulan menggunakan substring
+        $currentdate = substr($date, 8, 2); // memisahkan format tanggal menggunakan substring
+        $result = $indonesian_month[(int) $month - 1];
+        return $result;
+    }
+
     function dfh($text)
     {
         if ($text=='') {
@@ -79,7 +105,7 @@ if (!function_exists('status')) {
         else {
             $text = date('Y-m-d', strtotime($text));
         }
-       
+
         return $text;
     }
 
@@ -91,7 +117,7 @@ if (!function_exists('status')) {
         else {
             $text = $this->input->post($text);
         }
-       
+
         return $text;
     }
 
@@ -103,12 +129,12 @@ if (!function_exists('status')) {
         else {
             $text = '<span class="label label-danger" style="align: center;"><i class="glyphicon glyphicon-remove" aria-hidden="true"></i></span>';
         }
-       
+
         return $text;
     }
 
     function showimage($i){
-         
+
         if ($i == NULL){
             $i = "(Noimage)";
         } else {
@@ -120,7 +146,7 @@ if (!function_exists('status')) {
     }
 
     function dlimage($i){
-         
+
         if ($i == NULL){
             $i = "(Noimage)";
         } else {
@@ -146,7 +172,7 @@ if (!function_exists('status')) {
         else {
             $data = '<span class="label label-success">'.$labeltrue.'</span>';
         }
-       
+
         return $data;
     }
 
@@ -168,7 +194,7 @@ if (!function_exists('status')) {
     {
         $text = ("<button type='button' class='btn btn-sm btn-warning btn-flat' data-toggle='tooltip' data-placement='top' title='Edit' onclick='edit_data(".$text.")'><i class='glyphicon glyphicon-pencil'></i></button>
             <button type='button' class='btn btn-sm btn-danger btn-flat' data-toggle='tooltip' data-placement='top' title='Hapus' onclick='hapus_data(".$text.")'><i class='glyphicon glyphicon-trash'></i></button>");
-     
+
         return $text;
     }
 
@@ -179,7 +205,7 @@ if (!function_exists('status')) {
             <button type='button' class='btn btn-sm btn-danger btn-flat' data-placement='top' title='Hapus' onclick='hapus_data(".$text.")'><i class='glyphicon glyphicon-trash'></i></button>
             <button type='button' class='btn btn-sm btn-success btn-flat' data-placement='top' title='Aktif' onclick='aktif_data(".$text.")'><i class='glyphicon glyphicon-ok'></i></button>
             ");
-     
+
         return $text;
     }
 
@@ -191,7 +217,7 @@ if (!function_exists('status')) {
             <button type='button' class='btn btn-sm btn-success btn-flat' data-placement='top' title='Aktif' onclick='aktif_data(".$text.")'><i class='glyphicon glyphicon-ok'></i></button>
             <button type='button' class='btn btn-sm btn-primary btn-flat' data-placement='top' title='Unggulan' onclick='tampil_data(".$text.")'><i class='glyphicon glyphicon-star'></i></button>
             ");
-     
+
         return $text;
     }
 
@@ -202,14 +228,14 @@ if (!function_exists('status')) {
             <button type='button' class='btn btn-sm btn-danger btn-flat' data-placement='top' title='Hapus' @click='hapus_data(".$text.")'><i class='glyphicon glyphicon-trash'></i></button>
             <button type='button' class='btn btn-sm btn-success btn-flat' data-placement='top' title='Aktif' @click='aktif_data(".$text.")'><i class='glyphicon glyphicon-ok'></i></button>
             ");
-     
+
         return $text;
     }
 
     function btnu($text)
     {
         $text = ("<button type='button' class='btn btn-sm btn-warning btn-flat' data-toggle='tooltip' data-placement='top' title='Edit' onclick='edit_data(".$text.")'><i class='glyphicon glyphicon-pencil'></i></button>");
-     
+
         return $text;
     }
 
@@ -218,7 +244,7 @@ if (!function_exists('status')) {
         $text = ("
             <button type='button' class='btn btn-sm btn-danger btn-flat' data-placement='top' title='Hapus' onclick='hapus_data(".$text.")'><i class='glyphicon glyphicon-trash'></i></button>
             ");
-     
+
         return $text;
     }
 
@@ -231,7 +257,7 @@ if (!function_exists('status')) {
         } else {
             $text = ("File Tidak Ada");
         }
-        
+
 
         return $text;
     }

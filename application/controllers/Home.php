@@ -19,6 +19,8 @@ class Home extends CI_Controller {
 				$data['ellastest'] = $this->db->get_where('t_config_text',array('tipe' => 'ellastest' ))->row();
 				$data['imghome'] = $this->db->get_where('t_config_image',array('tipe' => 'homeimage' ))->row();
 				$data['educational'] = $this->db->get('m_educational')->result();
+				$data['news'] 	= $this->db->query("select * from m_news ORDER BY id desc LIMIT 3 ")->result();
+				$data['lastnews'] 	= $this->db->query("select * from m_news ORDER BY id desc LIMIT 1 ")->row();
 		    $this->load->view($this->mainpage,$data);
     }
 
