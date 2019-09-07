@@ -301,7 +301,7 @@
 					</div>
 
 					<div class="col-md-4">
-						<div class="mockup"><img src="images/resource/books-mockup.png" alt="" /></div>
+						<div class="mockup"><img src="<?php echo base_url().$imghome->image; ?>" alt="" /></div>
 					</div>
 				</div>
 			</div>
